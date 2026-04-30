@@ -114,3 +114,5 @@ zsdoc/data
 
 # MacOS
 .DS_Store
+*.mov
+*.zip
