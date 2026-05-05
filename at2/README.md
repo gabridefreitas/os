@@ -12,7 +12,7 @@ Código-fonte principal da atividade.
 Implementa:
 1. Múltiplas threads para busca paralela de números perfeitos;
 2. Exclusão mútua com pthread_mutex para sincronização;
-3. Cálculo eficiente de divisores para identificar números perfeitos;
+3. Fórmula de Euclides-Euler para identificação de números perfeitos: $2^{p-1} \times (2^p - 1)$, onde $2^p - 1$ é primo;
 4. Medição de tempo total de execução em milissegundos.
 
 - Dockerfile
