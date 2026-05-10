@@ -46,9 +46,11 @@ int isPerfect(int n) {
     if (isPrime(mersenne)) {
       // Calcular 2^(p-1) * (2^p - 1)
       int perfect = (1 << (p - 1)) * mersenne;
+
       if (perfect == n) {
         return 1;
       }
+
       if (perfect > n) {
         break;
       }
@@ -62,11 +64,7 @@ void* thread_worker(void* arg) {
   long thread_id = (long)arg;
   int candidate;
 
-  while (1) {
-    if (perfect_count >= PERFECT_NUMBERS_NEEDED) {
-      break;
-    }
-
+  while (perfect_count < PERFECT_NUMBERS_NEEDED) {
     pthread_mutex_lock(&mutex);
     candidate = current_number;
     current_number++;
@@ -75,11 +73,11 @@ void* thread_worker(void* arg) {
     if (isPerfect(candidate)) {
       pthread_mutex_lock(&mutex);
       if (perfect_count < PERFECT_NUMBERS_NEEDED) {
-        printf("Thread %ld encontrou o número perfeito: %d\n", thread_id,
-               candidate);
         perfect_count++;
       }
       pthread_mutex_unlock(&mutex);
+      printf("Thread %ld encontrou o número perfeito: %d\n", thread_id,
+             candidate);
     }
   }
 
